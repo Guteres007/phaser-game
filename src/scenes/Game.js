@@ -1,6 +1,7 @@
 /// <reference path="../../typings/phaser.d.ts" />
 
 import Phaser from 'phaser';
+import Hero from '../entities/Hero'
 
 class Game extends Phaser.Scene {
   constructor() {
@@ -14,12 +15,16 @@ class Game extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 64
     });
-    //this.load.image('logo', 'assets/phaser3-logo.png');
   }
 
   create(data) {
-    this.add.sprite(400, 300, 'hero-run-sheet',5);
-    //this.add.image(400, 300, 'logo');
+    this.anims.create({
+      key: 'hero-running',
+      frames: this.anims.generateFrameNumbers('hero-run-sheet'),
+      frameRate: 10,
+      repeat: -1
+    });
+    this.hero = new Hero(this, 250, 160)
   }
 
   update(time, delta) {}
